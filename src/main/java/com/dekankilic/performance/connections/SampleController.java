@@ -13,7 +13,7 @@ public class SampleController {
         this.externalService = externalService;
     }
 
-    @GetMapping
+    @GetMapping("/hello")
     public void hello() {
         sampleService.hello();
         externalService.externalCall();

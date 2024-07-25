@@ -6,12 +6,16 @@ spring:
     username: dekan
     password: s3cret
     driver-class-name: org.postgresql.Driver
+    hikari: # for external
+      auto-commit: false
   jpa:
     hibernate:
       ddl-auto: create
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+    open-in-view: false # for hello
+
 
 decorator:
   datasource:

@@ -1,18 +1,20 @@
 package com.dekankilic.performance.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
+@DynamicUpdate // Hibernate will track which fields on the entity have changed, and it will update only those fields. But, this comes with a cost that Hibernate has to track it.
 public class BankTransfer {
     @Id
     private String id;
 
     private String reference;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account sender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account receiver;
 
     @Embedded
@@ -20,6 +22,10 @@ public class BankTransfer {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+    @Version
+    private Long version;
+
 
     public enum State {
         CREATED,
