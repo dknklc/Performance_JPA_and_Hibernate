@@ -15,6 +15,13 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     open-in-view: false # for hello
+    properties: # Find Performance Issues # Generate and log statistics
+      hibernate:
+        generate_statistics: true
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
 
 
 decorator:
@@ -24,3 +31,11 @@ decorator:
         connection:
           lease: 0
           acquire: -1
+
+logging:
+  level:
+    org:
+      hibernate:
+        stat: DEBUG
+        sql: DEBUG
+        cache: DEBUG

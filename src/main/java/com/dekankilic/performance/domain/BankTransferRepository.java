@@ -11,7 +11,7 @@ public interface BankTransferRepository extends ListCrudRepository<BankTransfer,
         return findById(id).orElseThrow();
     }
 
-    //@Query("from BankTransfer b join fetch b.sender join fetch b.receiver where b.id =: senderId")
+    //@Query("from BankTransfer b join fetch b.sender join fetch b.receiver where b.id =: senderId") // To avoid N + 1 problem in Hibernate
     @EntityGraph(attributePaths = {"sender", "receiver"})
     List<BankTransfer> findBySenderId(String senderId);
 }
